@@ -12,7 +12,7 @@ export default function TabsLayout() {
         headerShadowVisible: false,
         headerTintColor: "#fff",
         tabBarStyle: {
-          backgroundColor: "#25292e"
+          backgroundColor: "#25292e",
         },
       }}
     >
@@ -30,6 +30,7 @@ export default function TabsLayout() {
         }} 
 
       />
+
       <Tabs.Screen 
         name="about" 
         options={{
