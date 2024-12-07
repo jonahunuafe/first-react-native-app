@@ -1,10 +1,27 @@
 import { View, StyleSheet } from 'react-native';
 import ImageViewer from '@/components/ImageViewer';
-import Button from "@/components/Button"
+import Button from "@/components/Button";
+import * as ImagePicker from "expo-image-picker";
 
 const PlaceholderImage = require("@/assets/images/Ivory-billed-Woodpecker.jpg")
 
 export default function Index() {
+  const pickImageAsync = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ["images"],
+      allowsEditing: true,
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if(!result.canceled) {
+      console.log(result);
+    } else {
+      alert("You did not select an image.");
+    }
+  }
+
   return (
     <View
       style={styles.container}
@@ -13,7 +30,7 @@ export default function Index() {
         <ImageViewer imgSource={PlaceholderImage} />
       </View>
       <View style={styles.footerContainer}>
-        <Button theme="primary" label="Choose a photo" />
+        <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
         <Button label="Use this photo" />
       </View>
     </View>
