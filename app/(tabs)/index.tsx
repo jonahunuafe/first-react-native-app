@@ -33,6 +33,14 @@ export default function Index() {
     setShowAppOptions(false);
   };
 
+  const onAddSticker = () => {
+    // To be implemented later
+  };
+
+  const onSaveImageAsync = async () => {
+    // To be implemented later
+  };
+
   return (
     <View
       style={styles.container}
@@ -42,7 +50,13 @@ export default function Index() {
       </View>
       {
         showAppOptions ? (
-          <View />
+          <View style={styles.optionsContainer}>
+            <View style={styles.optionsRow}>
+              <IconButton icon="refresh" label="refresh" onPress={onReset} />
+              <CircleButton onPress={onAddSticker} />
+              <IconButton icon="save-alt" label="Save" onPress={onSaveImageAsync} />
+            </View>
+          </View>
         ) : (
           <View style={styles.footerContainer}>
             <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
@@ -67,5 +81,13 @@ const styles = StyleSheet.create({
   footerContainer: {
     flex: 1 / 3,
     alignItems: "center",
-  }
+  }, 
+  optionsContainer: {
+    position: "absolute",
+    bottom: 80,
+  },
+  optionsRow: {
+    alignItems: "center",
+    flexDirection: "row"
+  },
 });
