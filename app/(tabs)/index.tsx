@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import Button from '@/components/Button';
 import ImageViewer from '@/components/ImageViewer';
+import IconButton from '@/components/IconButton';
+import CircleButton from '@/components/CircleButton';
 
 const PlaceholderImage = require('@/assets/images/Ivory-billed-Woodpecker.jpg')
 
@@ -26,6 +28,10 @@ export default function Index() {
       alert("You did not select an image.");
     }
   }
+
+  const onReset = () => {
+    setShowAppOptions(false);
+  };
 
   return (
     <View
