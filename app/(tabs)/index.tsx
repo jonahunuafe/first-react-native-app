@@ -9,12 +9,13 @@ import CircleButton from '@/components/CircleButton';
 import EmojiPicker from '@/components/EmojiPicker';
 import EmojiList from '@/components/EmojiList';
 import { type ImageSource } from 'expo-image';
+import EmojiSticker from '@/components/EmojiSticker';
 
 const PlaceholderImage = require('@/assets/images/Ivory-billed-Woodpecker.jpg')
 
 export default function Index() {
   const [selectedImage, setSelectedImage] = useState<string | undefined>(undefined);
-  const [showAppOptions, setShowAppOptions] = useState<boolean>(true);
+  const [showAppOptions, setShowAppOptions] = useState<boolean>(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [pickedEmoji, setPickedEmoji] = useState<ImageSource | undefined>(undefined);
 
@@ -56,6 +57,7 @@ export default function Index() {
     >
       <View style={styles.imageContainer}>
         <ImageViewer imgSource={PlaceholderImage} selectedImage={selectedImage} />
+        {pickedEmoji && <EmojiSticker imageSize={40} stickerSource={pickedEmoji} />}
       </View>
       {
         showAppOptions ? (
@@ -69,7 +71,7 @@ export default function Index() {
         ) : (
           <View style={styles.footerContainer}>
             <Button theme="primary" label="Choose a photo" onPress={pickImageAsync} />
-            <Button label="Use this photo" />
+            <Button label="Use this photo" onPress={() => setShowAppOptions(true)} />
           </View>  
         )
       }
