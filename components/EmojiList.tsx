@@ -9,16 +9,30 @@ type Props = {
 
 export default function EmojiList({ onSelect, onCloseModal }: Props) {
   const [emoji] = useState<ImageSource[]>([
-    
+    require("../assets/images/hello.png"),
+    require("../assets/images/rolling-eyes.png"),
+    require("../assets/images/star.png"),
+    require("../assets/images/surprised.png"),
+    require("../assets/images/tongue-out.png"),
+    require("../assets/images/smiley.png"),
   ]);
 
   return (
     <FlatList 
       horizontal
       showsHorizontalScrollIndicator={Platform.OS === "web"}
-      data={}
+      data={emoji}
       contentContainerStyle={styles.listContainer}
-
+      renderItem={({item, index}) => (
+        <Pressable
+          onPress={() => {
+            onSelect(item);
+            onCloseModal();
+          }}
+        >
+          <Image source={item} key={index} style={styles.image} />
+        </Pressable>
+      )}
     />
   );
 }
